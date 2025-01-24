@@ -1,0 +1,109 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: coinage-backend
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - DATABASE_URL=postgresql://coinage:coinage_password@postgres:5432/coinage
+      - REDIS_URL=redis://redis:6379/0
+      - SENTRY_DSN=${SENTRY_DSN}
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - coinage_network
+
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: coinage-frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_BASE_URL=http://backend:5000/api
+    depends_on:
+      - backend
+    networks:
+      - coinage_network
+
+  postgres:
+    image: postgres:13
+    container_name: coinage-postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=coinage
+      - POSTGRES_USER=coinage
+      - POSTGRES_PASSWORD=coinage_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - coinage_network
+
+  redis:
+    image: redis:6.2-alpine
+    container_name: coinage-redis
+    restart: always
+    volumes:
+      - redis_data:/data
+    networks:
+      - coinage_network
+
+  prometheus:
+    image: prom/prometheus
+    container_name: coinage-prometheus
+    restart: always
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - coinage_network
+
+  grafana:
+    image: grafana/grafana
+    container_name: coinage-grafana
+    restart: always
+    ports:
+      - "3001:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - coinage_network
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
+    container_name: coinage-elasticsearch
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - coinage_network
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.14.0
+    container_name: coinage-kibana
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - coinage_network
+
+volumes:
+  postgres_data:
+  redis_data:
+  elasticsearch_data:
+
+networks:
+  coinage_network:
+    driver: bridge

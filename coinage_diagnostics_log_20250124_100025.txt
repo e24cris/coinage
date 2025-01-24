@@ -1,0 +1,2 @@
+﻿[2025-01-24 10:00:24] [Info] Starting platform readiness check
+[2025-01-24 10:00:25] [Error] Critical error in platform readiness check: The term 'x86' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.

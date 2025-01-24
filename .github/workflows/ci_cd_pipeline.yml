@@ -1,0 +1,62 @@
+name: Coinage CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  prepare-credentials:
+    runs-on: ubuntu-latest
+    outputs:
+      dockerhub_username: ${{ steps.map-credentials.outputs.dockerhub_username }}
+      dockerhub_token: ${{ steps.map-credentials.outputs.dockerhub_token }}
+    steps:
+      - name: Map and Validate Credentials
+        id: map-credentials
+        run: |
+          # Explicit credential mapping
+          USERNAME="${{ secrets.DOCKERHUB_USERNAME }}"
+          TOKEN="${{ secrets.DOCKERHUB_TOKEN }}"
+          
+          # Validate credentials
+          if [[ -z "$USERNAME" ]]; then
+            echo "::error::Docker Hub Username is missing"
+            exit 1
+          fi
+          
+          if [[ -z "$TOKEN" ]]; then
+            echo "::error::Docker Hub Token is missing"
+            exit 1
+          fi
+          
+          # Output mapped credentials
+          echo "dockerhub_username=$USERNAME" >> $GITHUB_OUTPUT
+          echo "dockerhub_token=$TOKEN" >> $GITHUB_OUTPUT
+
+  docker-build:
+    needs: prepare-credentials
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Docker Hub Login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ needs.prepare-credentials.outputs.dockerhub_username }}
+          password: ${{ needs.prepare-credentials.outputs.dockerhub_token }}
+      
+      - name: Build Backend
+        uses: docker/build-push-action@v3
+        with:
+          context: ./backend
+          push: true
+          tags: coinage/backend:${{ github.sha }}
+      
+      - name: Build Frontend
+        uses: docker/build-push-action@v3
+        with:
+          context: ./frontend
+          push: true
+          tags: coinage/frontend:${{ github.sha }}

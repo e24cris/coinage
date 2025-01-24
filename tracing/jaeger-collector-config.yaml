@@ -1,0 +1,29 @@
+collector:
+  zipkin:
+    host-port: :9411
+  grpc:
+    host-port: :14250
+
+sampling:
+  strategies:
+    default_strategy:
+      type: probabilistic
+      param: 0.5
+
+agent:
+  processors:
+    workers: 10
+    queue-size: 1000
+
+storage:
+  type: memory
+  memory:
+    max-traces: 50000
+
+query:
+  base-path: /jaeger
+
+reporting:
+  max-operation-name-length: 255
+
+log-level: info

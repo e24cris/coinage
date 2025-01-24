@@ -1,0 +1,26 @@
+# Coinage Database Migrations
+
+## Overview
+This directory contains database migration scripts for the Coinage project.
+
+## Migration Management
+- Uses Flask-Migrate for database schema version control
+- Tracks incremental changes to database schema
+- Supports rollback and upgrade of database structure
+
+## Quick Reference
+
+### Common Commands
+- `flask db migrate`: Create a new migration script
+- `flask db upgrade`: Apply pending migrations
+- `flask db downgrade`: Revert last migration
+
+## Best Practices
+- Always backup database before migrations
+- Review migration scripts before applying
+- Test migrations in a staging environment
+
+## Troubleshooting
+- If migration fails, check model definitions
+- Ensure all dependencies are installed
+- Verify database connection settings

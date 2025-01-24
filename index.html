@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coinage - Your Gateway to Wealth</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="js/market-news.js" defer></script>
+</head>
+<body class="bg-blue-900 text-white">
+    <header class="bg-blue-1000 p-6">
+        <nav class="container mx-auto flex justify-between items-center">
+            <div class="logo">
+                <h1 class="text-2xl font-bold">Coinage</h1>
+            </div>
+            <ul class="flex space-x-6">
+                <li><a href="index.html" class="hover:text-blue-300">Home</a></li>
+                <li><a href="about.html" class="hover:text-blue-300">About</a></li>
+                <li><a href="services.html" class="hover:text-blue-300">Services</a></li>
+                <li><a href="contact.html" class="hover:text-blue-300">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero bg-blue-1000 text-center py-24">
+            <div class="container mx-auto px-4">
+                <h1 class="text-5xl font-bold mb-6">Invest Wisely, Grow Wealthier</h1>
+                <p class="text-xl max-w-2xl mx-auto mb-8">
+                    Your journey to financial freedom starts here. Explore the world of stocks, forex, and cryptocurrencies with Coinage.
+                </p>
+                <a href="services.html" class="bg-white text-blue-900 px-8 py-3 rounded-full hover:bg-blue-100 transition duration-300">
+                    Get Started
+                </a>
+            </div>
+        </section>
+
+        <section class="features py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-12">Why Choose Coinage?</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-blue-1000 p-8 rounded-lg text-center shadow-lg transform hover:scale-105 transition duration-300">
+                        <img src="images/stock-trading.svg" alt="Stock Trading" class="mx-auto mb-6 w-24 h-24">
+                        <h3 class="text-2xl font-semibold mb-4">Stock Trading</h3>
+                        <p>Invest in global markets and build a diversified portfolio.</p>
+                    </div>
+                    <div class="bg-blue-1000 p-8 rounded-lg text-center shadow-lg transform hover:scale-105 transition duration-300">
+                        <img src="images/forex-trading.svg" alt="Forex Trading" class="mx-auto mb-6 w-24 h-24">
+                        <h3 class="text-2xl font-semibold mb-4">Forex Trading</h3>
+                        <p>Trade currencies 24/7 and capitalize on market fluctuations.</p>
+                    </div>
+                    <div class="bg-blue-1000 p-8 rounded-lg text-center shadow-lg transform hover:scale-105 transition duration-300">
+                        <img src="images/crypto-trading.svg" alt="Cryptocurrency Trading" class="mx-auto mb-6 w-24 h-24">
+                        <h3 class="text-2xl font-semibold mb-4">Cryptocurrency</h3>
+                        <p>Explore the exciting world of digital assets and invest in the future.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="market-news py-16 bg-blue-1000">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-12">Market News & Insights</h2>
+                <div id="news-container" class="grid md:grid-cols-3 gap-8">
+                    <!-- News will be dynamically populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-blue-1000 text-center py-6">
+        <p>&copy; 2025 Coinage. All rights reserved.</p>
+    </footer>
+</body>
+</html>

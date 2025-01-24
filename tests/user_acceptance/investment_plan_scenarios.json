@@ -1,0 +1,122 @@
+{
+    "scenarios": [
+        {
+            "name": "Select Low-Risk Investment Plan",
+            "url": "/investment-plans",
+            "actions": [
+                {
+                    "type": "click",
+                    "selector": ".risk-level-low",
+                    "description": "Select low-risk investment option"
+                },
+                {
+                    "type": "input",
+                    "selector": "#investment-amount",
+                    "value": "5000",
+                    "description": "Set investment amount"
+                },
+                {
+                    "type": "click",
+                    "selector": ".plan-select-button",
+                    "description": "Select first available plan"
+                }
+            ],
+            "expectations": [
+                {
+                    "type": "text",
+                    "selector": ".selected-plan-name",
+                    "value": "Conservative Growth Plan"
+                },
+                {
+                    "type": "text",
+                    "selector": ".expected-return",
+                    "value": "4-5%"
+                }
+            ]
+        },
+        {
+            "name": "Create High-Risk Investment Plan",
+            "url": "/admin/investment-plans/create",
+            "actions": [
+                {
+                    "type": "input",
+                    "selector": "#plan-name",
+                    "value": "Aggressive Tech Growth"
+                },
+                {
+                    "type": "select",
+                    "selector": "#risk-level",
+                    "value": "High"
+                },
+                {
+                    "type": "input",
+                    "selector": "#min-investment",
+                    "value": "10000"
+                },
+                {
+                    "type": "input",
+                    "selector": "#asset-stocks",
+                    "value": "0.7"
+                },
+                {
+                    "type": "input",
+                    "selector": "#asset-crypto",
+                    "value": "0.2"
+                },
+                {
+                    "type": "input",
+                    "selector": "#asset-cash",
+                    "value": "0.1"
+                },
+                {
+                    "type": "click",
+                    "selector": ".create-plan-button"
+                }
+            ],
+            "expectations": [
+                {
+                    "type": "text",
+                    "selector": ".plan-creation-status",
+                    "value": "Plan Created Successfully"
+                },
+                {
+                    "type": "text",
+                    "selector": ".plan-name-display",
+                    "value": "Aggressive Tech Growth"
+                }
+            ]
+        },
+        {
+            "name": "Simulate Investment Plan Performance",
+            "url": "/investment-plans/performance-simulator",
+            "actions": [
+                {
+                    "type": "select",
+                    "selector": "#plan-selector",
+                    "value": "Aggressive Tech Growth"
+                },
+                {
+                    "type": "input",
+                    "selector": "#simulation-investment",
+                    "value": "20000"
+                },
+                {
+                    "type": "click",
+                    "selector": ".run-simulation-button"
+                }
+            ],
+            "expectations": [
+                {
+                    "type": "text",
+                    "selector": ".simulation-success-rate",
+                    "value": "Above 70%"
+                },
+                {
+                    "type": "text",
+                    "selector": ".simulation-final-value",
+                    "value": "Positive Growth"
+                }
+            ]
+        }
+    ]
+}

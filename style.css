@@ -1,0 +1,120 @@
+/* Custom CSS to complement Tailwind */
+:root {
+    --primary-blue: #002b5c;
+    --secondary-blue: #001c44;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+    background-color: #002b5c; /* Royal Blue */
+    color: #fff;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--secondary-blue);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4a90e2;
+    border-radius: 4px;
+}
+
+/* Subtle Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+header {
+    background-color: #001c44; /* Darker Blue */
+    padding: 20px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 0;
+    background-color: #001c44;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.btn {
+    background-color: #fff;
+    color: #002b5c;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.features {
+    padding: 50px 0;
+}
+
+.feature-cards {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card {
+    text-align: center;
+    padding: 20px;
+    background-color: #001c44;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.market-news {
+    padding: 50px 0;
+}
+
+/* Responsive Typography */
+@media (max-width: 640px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+}
+
+/* Accessibility Enhancements */
+a:focus, button:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        color: black;
+        background: white;
+    }
+}
+
+/* Add more CSS rules for styling as needed */
