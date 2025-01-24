@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Coinage: Advanced Investment & Trading Platform
 
 ## 🚀 Overview
@@ -130,3 +131,6 @@ Detailed API and system documentation available at [docs.coinage.com](https://do
 
 *Last Updated*: 2025-01-23
 *Version*: 1.0.0
+=======
+# coinage
+>>>>>>> e92dbea46953e773f452ac820d282c6f21b7b63f
